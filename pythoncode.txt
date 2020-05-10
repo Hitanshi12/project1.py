@@ -1,0 +1,126 @@
+""" This project is based on docker 
+"""
+
+
+import os
+import getpass
+os.system("tput setaf 1")
+
+
+print("\t\t\t hey welcome to my project!!!")
+print("\t\t\t********************************************************************")
+os.system("tput setaf 7")
+print("""
+        press 1: For installing Docker
+        press 2: For pulling centos image
+        press 3: For launching OPerating system (centos)
+        press 4: For docker help
+        press 5: For creating docker image of your operating system
+        press 6: For uploading your docker image
+        press 7: For starting your os
+        press 8: For creating your own volume  in docker container
+        press 12:For pulling ubuntu image
+        press 13:For launching os (ubuntu)
+        press 14:For exit
+        """)
+while True:
+   print("Enter your choice:",end="")
+   ch=input()
+
+
+
+
+
+ch=input()
+   if int(ch) == 1 :
+      os.system("yum install docker-ce  --nobest")
+
+
+   elif int(ch) ==2 :
+      os.system("docker pull centos:7")
+
+
+   elif int(ch) ==3:
+      print("tell me the  name which  you would like to give your os:",end="")
+
+      z=input()
+      print("press exit to terminate the container")
+      os.system("docker pull centos:7")
+
+      os.system("docker run -it --name  {} centos".format(z) )
+
+
+
+   elif int(ch) == 4:
+      os.system("docker container --help")
+
+
+   elif int(ch) == 5:
+       print("Please give your os name:",end="")
+       x=input()
+       print("Please give your image name:",end="")
+       y=input()
+       os.system("docker commit {0} {1}".format(x,y))
+
+
+   elif int(ch) == 6:
+       print(" For uploading an image you must have an  account on docker hub",end="\n")
+       os.system("docker login")
+       u=input("username:")
+       p=getpass.getpass("password:")
+       i=input("your docker id:")
+       im=input("your image name:")
+       os.system("docker tag {0} {1}/{0}".format(im,i))
+       os.system("docker push {0}/{1}".format(i,im))
+
+
+   elif int(ch) == 7:
+       user=input("Give your os name:")
+       os.system("docker start {}".format(user))
+       os.system("docker attach {}".format(user))
+
+
+
+   elif int(ch) ==8:
+
+       st=input("Give your storage name :")
+       os.system("docker volume create {}".format(st))
+
+
+
+   elif int(ch) ==9:
+       os.system("docker volume ls")
+
+
+   elif int(ch) ==10:
+       osname=input("Give your os name :")
+       st1=input("Give your storage name :")
+       os.system("docker run -it --name {0} -v {1} centos:7".format(osname,st1))
+
+
+   elif int(ch)==11:
+       os.system(' curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose')
+       os.system("chmod +x /usr/local/bin/docker-compose")
+
+
+   elif int(ch)==12:
+       os.system("docker pull ubuntu:14.04")
+
+
+
+   elif int(ch)==13:
+       ubuntuname=input("Give your os name :")
+       os.system("docker pull ubuntu:14.04")
+       os.system("docker run -it --name {} ubuntu:14.04".format(ubuntuname))
+
+
+
+
+   elif int(ch)==14:
+       exit()
+
+    else :
+      os.system("tput setaf 1")
+      print( "Please select the right choice")
+      os.system("tput setaf 7")
+
