@@ -31,7 +31,7 @@ while True:
 
 
 
-ch=input()
+
    if int(ch) == 1 :
       os.system("yum install docker-ce  --nobest")
 
